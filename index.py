@@ -4,16 +4,17 @@ import jinja2
 import webbrowser
 
 title = "TxtExt"
-definition = "<h4>Text extarctor is a simple application used to extract the desired text from the image!<h4>"
-pics = [ ['E:/example.jpg','This is image 1'],
-         ['E:/example_01.png','This is image 2'],
-         ['E:/example_03.png','This is image 3'] ]
+definition = "<h5>Text extarctor is a simple application used to extract the desired text from the image!<h5>"
 
+# pics = 'E:/example_01.png'
+pics = 'E:/opencraft.png'
+       
 pytesseract.pytesseract.tesseract_cmd = r"C:/Program Files/Tesseract-OCR/tesseract.exe"
-image_path = r"E:/example_01.png"
+# image_path = r"E:/example_01.png"
+image_path = r"E:/opencraft.png"
 image = Image.open(image_path)
 txt_from_img = pytesseract.image_to_string(image)
-txt = "<h3> Below is the text extracted from the given image  <h3>" + txt_from_img
+txt = "<h6> Below is the text extracted from the given image  <h6>" + txt_from_img
 
 
 outputfile = "E:/gitprojects/text-extractor/home.html"

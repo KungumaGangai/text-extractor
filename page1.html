@@ -17,8 +17,7 @@
             <div class="col-4" style="font-size: 70px">
                 <p class="mb-0">
                     <span style="color: chartreuse;" >Txt</span><span style="color: darkblue;">Ext</span>
-                    <!--  <figcaption style="font-size: 15px">Extract text from images</figcaption> -->
-                    
+                    <!--  <figcaption style="font-size: 15px">Extract text from images</figcaption> -->                    
                 </p>                 
             </div>
             <div class="col-8"></div>
@@ -29,9 +28,8 @@
     <div class="container">
         {{ content }}
         <br>
-        {% for value in input_img %}
-            <img src="{{value[0]}}" alt="{{value[1]}}"> </img>
-        {% endfor %}
+        
+        <img src="{{ input_img }}" alt="This is pics"> </img>        
 
         {{ output }}
     </div>
