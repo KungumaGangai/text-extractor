@@ -17,10 +17,10 @@ txt_from_img = pytesseract.image_to_string(image)
 txt = "<h6> Below is the text extracted from the given image  <h6>" + txt_from_img
 
 
-outputfile = "E:/gitprojects/text-extractor/home.html"
+outputfile = "E:/gitprojects/text-extractor/0.1/home.html"
 
 subs = jinja2.Environment(
-              loader=jinja2.FileSystemLoader('E:/gitprojects/text-extractor/')
+              loader=jinja2.FileSystemLoader('E:/gitprojects/text-extractor/0.1/')
               ).get_template('page1.html').render(title=title, content=definition, input_img=pics ,output=txt)
 
 # lets write a substitution to a file
