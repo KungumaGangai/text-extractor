@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>{{ title }}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='02/static/css/main.css'>    
+    <link rel="stylesheet" href="02/static/plugins/bootstrap/css/bootstrap.min.css">
+    <script src="02/static/plugins/jquery/jquery-3.5.1.js"></script>
+    <script src="02/static/plugins/bootstrap/js/bootstrap.min.js"></script>  
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-4" style="font-size: 60px">
+                <p class="mb-0">
+                    <span style="color: chartreuse;" >Txt</span><span style="color: darkblue;">Ext</span>
+                    <!--  <figcaption style="font-size: 15px">Extract text from images</figcaption> -->                    
+                </p>                   
+            </div>
+            <div class="col-8">
+                <hr style="height:2px;border-width:0;color:darkorange;background-color:darkorange">                                
+            </div>
+        </div>
+        
+        
+    </div>
+    <div class="container">
+        {{ content }}
+        <br>
+        
+        <img src="{{ input_img }}" alt="This is pics"> </img>        
+
+        {{ output }}
+    </div>
+</body>
+</html>
