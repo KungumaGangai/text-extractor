@@ -1,5 +1,7 @@
-#Vs code
+# Vs code
 .vscode
+
+# Other Folders and files
 static
 css
 plugins
