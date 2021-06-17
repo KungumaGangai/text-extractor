@@ -5,10 +5,20 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>{{ title }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='02/static/css/main.css'>    
-    <link rel="stylesheet" href="02/static/plugins/bootstrap/css/bootstrap.min.css">
-    <script src="02/static/plugins/jquery/jquery-3.5.1.js"></script>
-    <script src="02/static/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    <link rel="stylesheet" href="{{ 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' }}">	
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='plugins/jquery/jquery-3.5.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>  
+
+    {{ dropzone_load() }}
+    {{ dropzone_style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+                
+
+    <!-- <link rel="stylesheet" href="text-extractor/02/static/plugins/bootstrap/css/bootstrap.min.css">
+    <script src="text-extractor/02/static/plugins/jquery/jquery-3.5.1.js"></script>
+    <script src="text-extractor/02/static/plugins/bootstrap/js/bootstrap.min.js"></script>   -->
 
 </head>
 <body>
@@ -21,19 +31,26 @@
                 </p>                   
             </div>
             <div class="col-8">
-                <hr style="height:2px;border-width:0;color:darkorange;background-color:darkorange">                                
+                
             </div>
         </div>
-        
+        <hr style="height:2px;border-width:0;color:darkorange;background-color:darkorange">                                
+        <br>
+        <div class="container">
+            <div class="mx-auto" style="width: 200px;">
+                <button type="button" class="btn btn-outline-secondary btn-lg"> Upload Image </button>   
+                {{ dropzone_create(action_view='index') }} 
+            </div>      
+        </div>
         
     </div>
-    <div class="container">
+    <!-- <div class="container">
         {{ content }}
         <br>
         
         <img src="{{ input_img }}" alt="This is pics"> </img>        
 
         {{ output }}
-    </div>
+    </div> -->
 </body>
 </html>
