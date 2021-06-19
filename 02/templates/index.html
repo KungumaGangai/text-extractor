@@ -6,19 +6,16 @@
     <title>{{ title }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     
-    <link rel="stylesheet" href="{{ 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' }}">	
+    {{ dropzone.load_css() }}
+    {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 100px;') }}
 
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}">
+    {# <link rel="stylesheet" href="{{ url_for('static', filename='plugins/dropzone-5.7.0/dist/dropzone.css') }}"> #}
+
     <script src="{{ url_for('static', filename='plugins/jquery/jquery-3.5.1.js') }}"></script>
     <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>  
-
-    {{ dropzone_load() }}
-    {{ dropzone_style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
-                
-
-    <!-- <link rel="stylesheet" href="text-extractor/02/static/plugins/bootstrap/css/bootstrap.min.css">
-    <script src="text-extractor/02/static/plugins/jquery/jquery-3.5.1.js"></script>
-    <script src="text-extractor/02/static/plugins/bootstrap/js/bootstrap.min.js"></script>   -->
+    {# <script src="{{ url_for('static', filename='plugins/dropzone-5.7.0/dist/dropzone.js') }}"></script>   #}
+    
 
 </head>
 <body>
@@ -38,19 +35,25 @@
         <br>
         <div class="container">
             <div class="mx-auto" style="width: 200px;">
-                <button type="button" class="btn btn-outline-secondary btn-lg"> Upload Image </button>   
-                {{ dropzone_create(action_view='index') }} 
+                
             </div>      
         </div>
         
     </div>
-    <!-- <div class="container">
-        {{ content }}
-        <br>
-        
-        <img src="{{ input_img }}" alt="This is pics"> </img>        
+    <div class="container">
+        {# <form action="url_for('extractor.upload')" class="dropzone"  >
+            <div class="fallback">
+                <input name="file" type="file" multiple />
+            </div>
+        </form> #}
 
-        {{ output }}
-    </div> -->
+        {{ dropzone.create(action='extractor.upload') }}
+        {{ dropzone.load_js() }}
+        {{ dropzone.config(redirect_url=url_for('extractor.upload', foo=bar)) }}
+        
+        {# You can get the success response from server like this: #}
+        {# { dropzone.config(custom_options="success: function(file, response){console.log(response);}") } #}
+
+    </div>
 </body>
 </html>

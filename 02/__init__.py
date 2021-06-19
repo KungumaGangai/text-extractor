@@ -1,32 +1,28 @@
 import os 
 
-from flask import Flask
+from flask import Flask, render_template, request, jsonify
 from flask_dropzone import Dropzone
-# from flask_uploads import UploadSet
-# , configure_uploads, IMAGES, patch_request_class
+
 from . import extractor
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.register_blueprint(extractor.bp)
 
+app.config.update(
+    UPLOADED_PATH=os.path.join(basedir, 'uploads'),
+    # Flask-Dropzone config:
+    DROPZONE_ALLOWED_FILE_TYPE = 'image',
+    DROPZONE_MAX_FILE_SIZE = 3,
+    DROPZONE_MAX_FILES = 1,
+    DROPZONE_DEFAULT_MESSAGE = '<b>Drop files here<b><br>Or<br><button type="button" class="btn btn-outline-secondary btn-lg"> Upload Image </button>                ',
+)
 
-
-# Uploads settings
-# app.config['UPLOAD_PHOTOS_DEST'] = os.getcwd() + '/uploads'
-
-# photos = UploadSet('photos', IMAGES)
-# configure_uploads(app, photos)
-# patch_request_class(app) #set maximum file size, default is 16MB
+dropzone = Dropzone(app)
 
 @app.route('/')
 def extractor():
-    dropzone = Dropzone(app)
-
-    # Dropzone Settings
-    app.config['DROPZONE_UPLOAD_MULTIPLE'] = True
-    app.config['DROPZONE_ALLOWED_FILE_CUSTOM'] = True
-    app.config['DROPZONE_ALLOWED_FILE_TYPE'] = 'image/*'
-    app.config['DROPZONE_REDIRECT_VIEW'] = 'results'
     return app
 
 @app.route('/hello')
