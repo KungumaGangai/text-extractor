@@ -1,6 +1,8 @@
 import os
-# from flask_dropzone import Dropzone
+
+from flask import current_app
 from PIL import Image
+from flask_dropzone import Dropzone
 import pytesseract
 
 from flask import (
@@ -9,27 +11,40 @@ from flask import (
 
 bp = Blueprint('extractor', __name__)
 
+# dir_path = os.path.dirname(os.path.realpath(__file__))
+
+# current_app.config.update(
+#     UPLOADED_PATH=os.path.join(dir_path, 'static'),
+#     # Flask-Dropzone config:
+#     DROPZONE_ALLOWED_FILE_TYPE='image',
+#     DROPZONE_MAX_FILE_SIZE=3,
+#     DROPZONE_MAX_FILES=1,
+#     DROPZONE_DEFAULT_MESSAGE = '<b>Drop files here<b><br>Or<br><button type="button" class="btn btn-outline-secondary btn-lg"> Upload Image </button>',
+# )
+# current_app.config['DROPZONE_REDIRECT_VIEW'] = 'makeMeme'
+
+# dropzone = Dropzone(current_app)
+
+# filename = None
+
 @bp.route('/')
 def index():
     title = "TxtExt"
     return render_template('index.html', title=title)
 
-@bp.route('/success')
-def success():
-    return "image uploaded!"
+# @bp.route('/upload', methods=['POST', 'GET'])
+# def upload():
+#     global filename
+#     file = None
+#     if request.method == 'POST':
+#         # return "Hit!"
+#         f = request.files.get('file')
+#         file = f.save(os.path.join(current_app.config['UPLOADED_PATH'], f.filename))
+#         filename = f.filename
+#     return render_template('index.html')
 
-@bp.route('/upload', methods=['POST', 'GET'])
-def upload():
-    # if request.method == 'POST':        
-    #     f = request.files.get('file')
-    #     file_path = os.path.join(app.config['UPLOADED_PATH'], f.filename)
-    #     f.save(file_path)
-    #     # You can return a JSON response then get it on client side:
-    #     # (see template index.html for client implementation)
-    #     # return jsonify(uploaded_path=file_path)
-    #     return render_template('index.html')
+# @bp.route('/makeMeme', methods=['POST', 'GET'])
+# def makeMeme():
+#     global filename
+#     return render_template("makeMeme.html", file_name = filename)
 
-    if request.method == 'POST':
-        for f in request.files.getlist('file'):
-            f.save(os.path.join(app.config['UPLOADED_PATH'], f.filename))
-    return redirect(url_for('extractor.success'))
