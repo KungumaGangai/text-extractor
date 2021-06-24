@@ -5,17 +5,12 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>{{ title }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    
-    {{ dropzone.load_css() }}
-    {{ dropzone.style('border: 2px dashed #0087F7; margin: 12%; min-height: 100px; opacity: 0.6; text-shadow: 2px 2px 4px #000000; text-transform: capitalize; ') }}
-
+        
     <link rel="stylesheet" href="{{ url_for('static', filename='plugins/bootstrap/css/bootstrap.min.css') }}">    
 
     <script src="{{ url_for('static', filename='plugins/jquery/jquery-3.5.1.js') }}"></script>
     <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>  
     
-    
-
 </head>
 <body style="background-image:url( {{ 'static/1208437.jpg' }} ); background-size: 100% 100%; background-repeat: no-repeat;">
     <div class="container">
@@ -41,13 +36,16 @@
         </div>
         
     </div>
+    
     <div class="container">
-        {{ dropzone.create(action='upload') }}
-        {{ dropzone.load_js() }}
-        {{ dropzone.config() }}
-    </div>
-    <div class="container">
-        <img src="{{url_for('static',filename=file_name)}}" alt="Fail">
+      {# <div class="row"> #}
+        <div class="col-8">
+            <img src="{{url_for('static',filename=file_name)}}" alt="Fail">
+        </div>
+        <div class="col-8">
+            <textarea id="edittext" name="edittext" rows="30" cols="50" >{{ extractedtext }}</textarea>
+        </div>
+      {# </div> #}
     </div>
 </body>
 </html>

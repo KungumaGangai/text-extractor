@@ -19,9 +19,9 @@ app.config.update(
     DROPZONE_ALLOWED_FILE_TYPE='image',
     DROPZONE_MAX_FILE_SIZE=3,
     DROPZONE_MAX_FILES=1,
-    DROPZONE_DEFAULT_MESSAGE = '<b>Drop files here<b><br>Or<br><button type="button" class="btn btn-outline-secondary btn-lg"> Upload Image </button>',
+    DROPZONE_DEFAULT_MESSAGE='Drop files here<br>Or<br><button type="button" class="btn btn-outline-secondary btn-lg"> Upload Image </button>',
 )
-app.config['DROPZONE_REDIRECT_VIEW'] = 'makeMeme'
+app.config['DROPZONE_REDIRECT_VIEW'] = 'sendtoExtractor'
 
 dropzone = Dropzone(app)
 
@@ -41,11 +41,10 @@ def upload():
         filename = f.filename
     return render_template('index.html')
 
-@app.route('/makeMeme', methods=['POST', 'GET'])
-def makeMeme():
+@app.route('/sendtoExtractor', methods=['POST', 'GET'])
+def sendtoExtractor():
     global filename
-    return render_template("index.html", file_name = filename)
-
+    return redirect(url_for('extractor.extracttext', file_name = filename))
 
 @app.route('/hello')
 def hello():
