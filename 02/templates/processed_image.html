@@ -33,19 +33,29 @@
                     <div class="flash">{{ message }}</div>
                 {% endfor %}
             </div>      
-        </div>
-        
+        </div>        
     </div>
     
     <div class="container">
-      {# <div class="row"> #}
-        <div class="col-8">
+      <div class="row">
+        <div class="col-6">
             <img src="{{url_for('static',filename=file_name)}}" alt="Fail">
         </div>
-        <div class="col-8">
-            <textarea id="edittext" name="edittext" rows="30" cols="50" >{{ extractedtext }}</textarea>
+        <div class="col-6">
+            <textarea id="edittext" name="edittext" rows="15" cols="80" >{{ extractedtext }}</textarea>
         </div>
-      {# </div> #}
+      </div>
     </div>
+    <br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 text-center">
+            <a class="btn btn-primary btn-lg" href="{{ url_for('extractor.download',text=extractedtext) }}" role="button">Download</a>           
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+    <br><br>
 </body>
 </html>

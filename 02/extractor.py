@@ -26,3 +26,9 @@ def extracttext():
     txt_from_img = pytesseract.image_to_string(image)
     
     return render_template('processed_image.html', file_name=file_name, extractedtext=txt_from_img)
+
+@bp.route('/download')
+def download():
+    content = request.args.get('text')
+    return render_template('makeMeme.html', content=content)
+
