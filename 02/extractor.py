@@ -31,6 +31,9 @@ def extracttext():
 def download():
     if request.method == 'POST':
         content = request.form['edittext']
+        doc = open('E:/gitprojects/text-extractor/02/static/extracted.txt', 'w')
+        doc.write(content)
+        doc.close()
         return render_template('makeMeme.html', content=content)
     
 
