@@ -36,6 +36,8 @@
         </div>        
     </div>
     
+    <form action="{{ url_for('extractor.download') }}" method="post">
+
     <div class="container">
       <div class="row">
         <div class="col-6">
@@ -51,11 +53,14 @@
       <div class="row">
         <div class="col-4"></div>
         <div class="col-4 text-center">
-            <a class="btn btn-primary btn-lg" href="{{ url_for('extractor.download',text=extractedtext) }}" role="button">Download</a>           
+            <button type="submit" class="btn btn-primary btn-lg" >Download</button>           
         </div>
         <div class="col-4"></div>
       </div>
     </div>
+
+    </form>
+
     <br><br>
 </body>
 </html>

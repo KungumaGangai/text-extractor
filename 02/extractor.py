@@ -27,8 +27,10 @@ def extracttext():
     
     return render_template('processed_image.html', file_name=file_name, extractedtext=txt_from_img)
 
-@bp.route('/download')
+@bp.route('/download', methods=['POST'])
 def download():
-    content = request.args.get('text')
-    return render_template('makeMeme.html', content=content)
+    if request.method == 'POST':
+        content = request.form['edittext']
+        return render_template('makeMeme.html', content=content)
+    
 
