@@ -1,10 +1,11 @@
 import os
-
-from PIL import Image
 import pytesseract
+from PIL import Image
+from fpdf import FPDF
+
 
 from flask import (
-    Blueprint, app, flash, g, redirect, render_template, request, session, url_for, jsonify
+    Blueprint, app, flash, g, redirect, render_template, request, session, url_for, jsonify, send_file
 )
 
 bp = Blueprint('extractor', __name__)
@@ -34,6 +35,18 @@ def download():
         doc = open('E:/gitprojects/text-extractor/02/static/extracted.txt', 'w')
         doc.write(content)
         doc.close()
+
+        # export as pdf process
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font('Arial', size=15)
+        # pdf.cell(200, 10, txt=content, ln=1, align='C')
+        for x in content:
+            pdf.cell(200, 10, txt = x, ln = 1, align = 'C')
+   
+        pdf.output("IMG.pdf")
+        
+
         return render_template('makeMeme.html', content=content)
     
 
